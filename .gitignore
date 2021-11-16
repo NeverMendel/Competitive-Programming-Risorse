@@ -31,7 +31,6 @@
 *.out
 *.app
 
+# IDE files
 .vscode
 .idea
-
-SortPairs
