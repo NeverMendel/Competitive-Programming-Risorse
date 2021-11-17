@@ -24,28 +24,29 @@
 
 \section{Complessità}
 
-Un concetto molto importante nel competitive programming è quello della complessità di un algoritmo. Gli algoritmi che scriviamo per risolvere devono essere efficienti sia in termini di tempo che di spazio. Spesso i problemi che dovremo risolvere ci daranno un indicazione sulla dimensione dei dati in input, il tempo massimo per il quale possiamo eseguire il nostro programma e la memoria massima che può utilizzare.
+Un concetto molto importante nel Competitive Programming è quello della complessità di un algoritmo. Gli algoritmi che scriviamo devono essere efficienti sia in termini di tempo che di spazio. 
+Spesso i problemi che dovremo risolvere ci daranno un indicazione sulla dimensione dei dati in input, il tempo massimo per il quale possiamo eseguire il nostro programma e la memoria massima che può utilizzare.
 
 Vediamo 3 classi di complessità, big $O$, big theta ($\Theta$) e big omega ($\Omega$).
 \begin{itemize}
   \item Big O: Complessità asintotica, complessità dell'algoritmo nel peggior caso possibile. Definisce un limite superiore sulla complessità dell'algoritmo.
   \item Big theta: Se big O e big omega sono uguali allora si può dire che big theta è uguale a big O e big omega.
-  \item Big omega: Definisce un limite inferiore sulla complessità dell'algoritmo.
+  \item Big omega: Complessità dell'algoritmo nel miglior caso possibile. Definisce un limite inferiore sulla complessità dell'algoritmo.
 \end{itemize}
 
 Le classi di complessità possono essere utilizzate per descrivere sia la complessità temporale che la complessità spaziale di un algoritmo.
 
 \section{Esempio complessità}
 
-Vediamo ora un esempio di complessità di un algoritmo. Supponiamo di dover scrivere l'algoritmo Bubble Sort per ordinare gli elementi di un vettore in ordine crescente.
+Vediamo ora un esempio di complessità di un algoritmo. Supponiamo di dover scrivere l'algoritmo Bubble Sort per ordinare gli elementi di un vettore in ordine non decrescente.
 
 \lstinputlisting[language=C++, caption=Bubble Sort in C++]{bubbleSort.cpp}
 
-La compessità temporale di questo algoritmo è $T(n) = n * \frac{n}{2}$ quindi diremo che la classe di complessità è $O(n^2)$, il peggior caso si verifica quando il vettore è ordinato con ordine decrescente. Il miglior caso si verifica quando il vettore è già ordinato in ordine crescente, se tale condizione si verifica il vettore verrà visitato una sola volta e poi l'algoritmo terminerà, possiamo quindi dire che $\Omega(n)$.
+La compessità temporale di questo algoritmo è $T(n) = n * \frac{n}{2}$, diremo quindi che la classe di complessità è $O(n^2)$, il peggior caso si verifica quando il vettore è ordinato con ordine decrescente. Il miglior caso si verifica quando il vettore è già ordinato in ordine crescente, se tale condizione si verifica il vettore verrà visitato una sola volta e poi l'algoritmo terminerà, possiamo quindi dire che $\Omega(n)$.
 
 \section{Sort}
 
-In competitive programming molto difficilmente dovremmo scrivere un algoritmo di sorting, la stra grande maggioranza delle volte useremo il sort che ci viene fornito dalla standard library.
+In competitive programming molto difficilmente dovremmo scrivere un algoritmo di sorting, la maggioranza delle volte useremo il sort che ci viene fornito dalla standard library.
 
 \begin{lstlisting}
 void sort (RandomAccessIterator first, RandomAccessIterator last);
@@ -53,16 +54,16 @@ void sort (RandomAccessIterator first, RandomAccessIterator last);
 void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
 \end{lstlisting}
 
-Il sort utilizzato da questa funzione è chiamato IntroSort e ha una complessità temporale $O(nlogn)$.
+Il sort utilizzato da questa funzione è chiamato IntroSort e ha una complessità temporale $O(nlogn)$ e spaziale $O(logn)$.
 
-Il comparator di default che viene utilizzato dalla funzione sort nel caso non ne venga fornito un altro è $less<int>$ e ordina la nostra struttura dati in ordine non decrescente. Per ordinare il vettore con ordine non crescente possiamo usare il comparator $greater<int>$, come nel seguente esempio:
+Il comparator di default che viene utilizzato dalla funzione sort, nel caso non ne venga fornito un altro, è $less<int>$ e ordina gli elementi presenti all'interno della struttura dati in ordine non decrescente. Per ordinare il vettore con ordine non crescente possiamo usare il comparator $greater<int>$, come nel seguente esempio:
 
 \begin{lstlisting}
 vector<int> v = {1,4,5,6,3,2};
 sort(v.begin(), v.end(), greater<int>);
 \end{lstlisting}
 
-Nel caso avessimo un vettore contantente un tipo diverso dagli interi, ad esempio $pair<string, int>$ e vogliamo ordinare questo vettore secondo un ordine che definiamo noi. Vogliamo che il vettore di coppie sia ordinato in base alla stringa in modo crescente e nel caso di stringhe uguali la coppia con l'intero più basso deve precedere.
+Nel caso volessimo ordinare il nostro vettore secondo un criterio diverso da quello del comparator $less<int>$ e $greater<int>$ allora dobbiamo definire un comparator. Supponiamo ad esempio di aver un vettore di $pair<string, int>$ e vogliamo che il vettore sia ordinato in base all'intero con ordine non decrescente e nel caso di interi uguali devono essere ordinati in ordine alfabetico.
 
 \lstinputlisting[language=C++, caption=Custom Comparator]{sortPairs.cpp}
 

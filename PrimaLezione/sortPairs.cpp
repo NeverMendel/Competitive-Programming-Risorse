@@ -32,7 +32,7 @@
 
 using namespace std;
 
-bool sortByAscendingValueAndDescendingKey(const pair<string,int>& a, const pair<string,int>& b){
+bool sortByAscendingIntAndDescendingString(const pair<string,int>& a, const pair<string,int>& b){
     if(a.second == b.second) return a.first > b.first;
     return a.second > b.second;
 }
@@ -47,7 +47,7 @@ int main(){
         cin >> name >> avg;
         v.push_back({name, avg});
     }
-    sort(v.begin(), v.end(), sortByAscendingValueAndDescendingKey);
+    sort(v.begin(), v.end(), sortByAscendingIntAndDescendingString);
     for(const pair<string,int>& el : v){
         cout << el.first << ' ' << el.second << "\n";
     }
