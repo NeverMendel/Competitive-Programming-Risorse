@@ -7,6 +7,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
 \lstset{
   language=C++,
   backgroundcolor=\color{black!5}, % set backgroundcolor
@@ -38,11 +40,42 @@ Le classi di complessità possono essere utilizzate per descrivere sia la comple
 
 \section{Esempio complessità}
 
-Vediamo ora un esempio di complessità di un algoritmo. Supponiamo di dover scrivere l'algoritmo Bubble Sort per ordinare gli elementi di un vettore in ordine non decrescente.
+Vediamo ora un esempio di complessità di alcuni algoritmi.
+
+\lstinputlisting[language=C++, caption=Esempi complessità]{esempiComplessita.cpp}
+
+\subsection{Bubble Sort}
+
+Supponiamo di dover scrivere l'algoritmo Bubble Sort per ordinare gli elementi di un vettore in ordine non decrescente.
 
 \lstinputlisting[language=C++, caption=Bubble Sort in C++]{bubbleSort.cpp}
 
 La compessità temporale di questo algoritmo è $T(n) = n * \frac{n}{2}$, diremo quindi che la classe di complessità è $O(n^2)$, il peggior caso si verifica quando il vettore è ordinato con ordine decrescente. Il miglior caso si verifica quando il vettore è già ordinato in ordine crescente, se tale condizione si verifica il vettore verrà visitato una sola volta e poi l'algoritmo terminerà, possiamo quindi dire che $\Omega(n)$.
+
+\subsection{Binary Search}
+
+Vediamo la complessità dell'algoritmo Binary Search. Il Binary Search è un algoritmo di ricerca che serve per trovare efficientemente un elemento in un vettore ordinato.
+
+\lstinputlisting[language=C++, caption=Binary Search in C++]{binarySearch.cpp}
+
+Per calcolare esattamente la complessità di questo algoritmo esistono diversi metodi matematici, tuttavia non ci soffermeremo troppo su questo. Nel competitive programming è importante saper calcolare velocemente la complessità.
+
+
+Ad ogni iterazione del ciclo while, il numero degli elementi che stiamo considerando viene dimezzato. 
+Continuiamo il ciclo while fino a che o troviamo l'elemento oppure finiamo gli elementi (se low >= high).
+Ad esempio supponiamo che gli elementi siano 7 e non l'elemento che stiamo cercando non sia presente nel vettore.
+
+$ \floor{7/2} = 3 $
+
+$ \floor{3/2} = 1 $
+
+$ \floor{1/2} = 0 $
+
+La funzione matematica che calcola il numero di volte che un numero è divisibile per 2 è la funzione logaritmo, in questo caso il logaritmo in base 2 di 7.
+
+$ log2(7) $
+
+Diciamo quindi che la complessità dell'algoritmo Binary Search è $O(log(n))$ e $\Omega(n)$.
 
 \section{Sort}
 
@@ -54,7 +87,7 @@ void sort (RandomAccessIterator first, RandomAccessIterator last);
 void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
 \end{lstlisting}
 
-Il sort utilizzato da questa funzione è chiamato IntroSort e ha una complessità temporale $O(nlogn)$ e spaziale $O(logn)$.
+Il sort utilizzato da questa funzione è chiamato IntroSort e ha una complessità temporale $O(nlog(n))$ e spaziale $O(log(n))$.
 
 Il comparator di default che viene utilizzato dalla funzione sort, nel caso non ne venga fornito un altro, è $less<int>$ e ordina gli elementi presenti all'interno della struttura dati in ordine non decrescente. Per ordinare il vettore con ordine non crescente possiamo usare il comparator $greater<int>$, come nel seguente esempio:
 
