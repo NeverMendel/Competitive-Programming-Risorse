@@ -9,16 +9,6 @@ double media(const vector<int>& v) {
     return somma / (double) v.size();
 }
 
-// Restituire l'element più piccolo in un vettore di interi
-// Complessità Theta(n)
-int minElement(const vector<int>& v) {
-    int res = INT_MAX;
-    for (int i = 0; i < v.size(); i++) {
-        res = min(res, v[i]);
-    }
-    return res;
-}
-
 // Restituire l'indice del primo numero negativo del vettore, -1 se non esiste
 // Complessità O(n) e Omega(1)
 int firstNegativeNumberIndex(const vector<int>& v) {
@@ -28,9 +18,19 @@ int firstNegativeNumberIndex(const vector<int>& v) {
     return -1;
 }
 
+// Restituire l'elemento più piccolo in un vettore di interi contentente almeno un elemento
+// Complessità Theta(n)
+int minElement(const vector<int>& v) {
+    int res = INT_MAX;
+    for (int i = 0; i < v.size(); i++) {
+        res = min(res, v[i]);
+    }
+    return res;
+}
+
 // Restituire il più piccolo intero in un vettore ordinato in modo non decrescente e contenente almeno un elemento
 // Complessità Theta(1)
-int minElementSorted(const vector<int>& v) {
+int minElementInSortedVector(const vector<int>& v) {
     return v[0];
 }
 
