@@ -1,11 +1,16 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
 
 \usepackage[a4paper, total={6.5in, 10in}]{geometry}
 \usepackage{setspace}
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+
 
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 
@@ -16,7 +21,7 @@
 }
 
 \title{Competitive Programming}
-\author{Davide Cazzin}
+\author{Riccardo Maso Davide Guidobene Florian Sabani Davide Cazzin}
 \date{Novembre 2021}
 
 \onehalfspacing
@@ -24,58 +29,54 @@
 
 \maketitle
 
-\section{Complessità}
+\section{Problemi}
 
-Un concetto molto importante nel Competitive Programming è quello della complessità di un algoritmo. Gli algoritmi che scriviamo devono essere efficienti sia in termini di tempo che di spazio. 
-Spesso i problemi che dovremo risolvere ci daranno un indicazione sulla dimensione dei dati in input, il tempo massimo per il quale possiamo eseguire il nostro programma e la memoria massima che può utilizzare.
+Con la Competitive Programming definiamo l'attività' per la quale andiamo a risolvere un problema strutturato in modo tale da avere : 
 
-Vediamo 3 classi di complessità, big $O$, big theta ($\Theta$) e big omega ($\Omega$).
-\begin{itemize}
-  \item Big O: Complessità asintotica, complessità dell'algoritmo nel peggior caso possibile. Definisce un limite superiore sulla complessità dell'algoritmo.
-  \item Big theta: Se big O e big omega sono uguali allora si può dire che big theta è uguale a big O e big omega.
-  \item Big omega: Complessità dell'algoritmo nel miglior caso possibile. Definisce un limite inferiore sulla complessità dell'algoritmo.
-\end{itemize}
+\begin{enumerate}
+    \item Descrizione Testuale del problema
+    \item Definizione del File Input
+    \item Input Constraint
+    \item Esempio di Input/Expected Output 
+    \item Time \& Space Constraint (TL \& SL)
+\end{enumerate}
 
-Le classi di complessità possono essere utilizzate per descrivere sia la complessità temporale che la complessità spaziale di un algoritmo.
+Lo scopo del programmatore competitivo e' quello di leggere il testo del problema, analizzarne la complessità e svilupparne una soluzione in grado di dato l'input, fornire sempre l'output atteso, rientrando nei limiti delle risorse tempo e spazio che l'algoritmo può usare.
 
-\section{Esempio complessità}
+Es :\url{https://open.kattis.com/problems/hello} \url{https://open.kattis.com/problems/10kindsofpeople}
 
-Vediamo ora un esempio di complessità di alcuni algoritmi.
+\section{Classi di complessità}
+[parlare della BigO Notation]\newline
+Per poter risolvere i problemi rientrando nel TL dobbiamo fare leva sull' Input Constraint datoci dalla descrizione del problema.In particolare avendo N la dimensione dei dati in input, generalmente possiamo scegliere un algoritmo risolutivo seguendo quanto dice la seguente tabella : 
 
-\lstinputlisting[language=C++, caption=Esempi complessità]{esempiComplessita.cpp}
+\includegraphics[scale=0.5]{matrix.PNG}
 
-\subsection{Bubble Sort}
+\section{Quale linguaggio?}
 
-Supponiamo di dover scrivere l'algoritmo Bubble Sort per ordinare gli elementi di un vettore in ordine non decrescente.
+\# C/C++ Python Java
 
-\lstinputlisting[language=C++, caption=Bubble Sort in C++]{bubbleSort.cpp}
+\section{Read/Write}
 
-La compessità temporale di questo algoritmo è $T(n) = n * \frac{n}{2}$, diremo quindi che la classe di complessità è $O(n^2)$, il peggior caso si verifica quando il vettore è ordinato con ordine decrescente. Il miglior caso si verifica quando il vettore è già ordinato in ordine crescente, se tale condizione si verifica il vettore verrà visitato una sola volta e poi l'algoritmo terminerà, possiamo quindi dire che $\Omega(n)$.
+Sempre attenzione nel rendere operazioni I/O efficienti.
 
-\subsection{Binary Search}
+\begin{lstlisting}
+// Read something
+int value;
+cin >> value;
 
-Vediamo la complessità dell'algoritmo Binary Search. Il Binary Search è un algoritmo di ricerca che serve per trovare efficientemente un elemento in un vettore ordinato.
+// Print something
+cout << value << "\n";
+cout << value << endl; // with flush 
 
-\lstinputlisting[language=C++, caption=Binary Search in C++]{binarySearch.cpp}
-
-Per calcolare esattamente la complessità di questo algoritmo esistono diversi metodi matematici, tuttavia non ci soffermeremo troppo su questo. Nel competitive programming è importante saper calcolare velocemente la complessità.
+\end{lstlisting}
 
 
-Ad ogni iterazione del ciclo while, il numero degli elementi che stiamo considerando viene dimezzato. 
-Continuiamo il ciclo while fino a che o troviamo l'elemento oppure finiamo gli elementi (se low >= high).
-Ad esempio supponiamo che gli elementi siano 7 e non l'elemento che stiamo cercando non sia presente nel vettore.
+\section{Template}
 
-$ \floor{7/2} = 3 $
+\lstinputlisting{template.cpp}
 
-$ \floor{3/2} = 1 $
+\section{Vector}
 
-$ \floor{1/2} = 0 $
-
-La funzione matematica che calcola il numero di volte che un numero è divisibile per 2 è la funzione logaritmo, in questo caso il logaritmo in base 2 di 7.
-
-$ log2(7) $
-
-Diciamo quindi che la complessità dell'algoritmo Binary Search è $O(log(n))$ e $\Omega(n)$.
 
 \section{Sort}
 
@@ -92,16 +93,12 @@ Il sort utilizzato da questa funzione è chiamato IntroSort e ha una complessit�
 Il comparator di default che viene utilizzato dalla funzione sort, nel caso non ne venga fornito un altro, è $less<int>$ e ordina gli elementi presenti all'interno della struttura dati in ordine non decrescente. Per ordinare il vettore con ordine non crescente possiamo usare il comparator $greater<int>$, come nel seguente esempio:
 
 \begin{lstlisting}
-vector<int> v = {1,4,5,6,3,2};
-sort(v.begin(), v.end(), greater<int>);
+    vector<int> v = {1,4,5,6,3,2};
+    sort(v.begin(), v.end(), greater<int>);
 \end{lstlisting}
 
 Nel caso volessimo ordinare il nostro vettore secondo un criterio diverso da quello del comparator $less<int>$ e $greater<int>$ allora dobbiamo definire un comparator. Supponiamo ad esempio di aver un vettore di $pair<string, int>$ e vogliamo che il vettore sia ordinato in base all'intero con ordine non decrescente e nel caso di interi uguali devono essere ordinati in ordine alfabetico.
 
-\lstinputlisting[language=C++, caption=Custom Comparator]{sortPairs.cpp}
-
-\section{Makefile}
-
-\lstinputlisting[caption=Makefile example]{Makefile}
+\section{Struct}
 
 \end{document}
