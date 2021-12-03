@@ -7,7 +7,7 @@ using namespace std;
 /* 
   Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
   You don't have to worry about integer overflow.
-  You cannot use the integer division.
+  You cannot use the division operation.
 
   Example
   Input:  [1,2,3,4]
