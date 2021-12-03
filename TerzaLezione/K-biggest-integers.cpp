@@ -10,7 +10,7 @@ using namespace std;
 */
 
 vector<int> k_biggest(const vector<int>& v, int k){
-  if(v.size() < k) return v;
+  if(v.size() <= k) return v;
   priority_queue<int, vector<int>, greater<int>> queue;
   for(const int& el : v){
     if(queue.size() < k){
