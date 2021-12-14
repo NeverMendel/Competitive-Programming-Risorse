@@ -25,7 +25,7 @@ int main() {
         frequency_table[s]++;
     }
 
-    for (pair<string, int> element : frequency_table) {
+    for (const auto& element : frequency_table) {
         most_grateful.push(element);
         if(most_grateful.size() > K)
             most_grateful.pop();
