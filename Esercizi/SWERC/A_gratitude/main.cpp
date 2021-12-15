@@ -38,7 +38,6 @@ int main() {
         string s;
         getline(cin, s);
         frequency_table[s]+=i;
-        cout << frequency_table[s].frequency << " " << frequency_table[s].last_appearance << endl;
     }
 
     for (const auto& element : frequency_table) {
