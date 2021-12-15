@@ -23,6 +23,8 @@ template <typename A, typename B> void in(pair<A,B> & x) { in(x.first); in(x.sec
 template <typename A> void in(vector<A> & x) { REP(i,0,(ll)x.size()) in(x[i]); }
 template <typename Head, typename... Tail> void in(Head & H, Tail & ... T) {in(H); in(T...); }
 
+// https://codingcompetitions.withgoogle.com/kickstart/round/00000000004362d6/00000000008b3771
+
 void solve(){
 	ll n, d, c, m;
 	string s;
