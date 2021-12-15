@@ -5,16 +5,31 @@
 
 using namespace std;
 
+class sentence {
+    public:
+    int frequency;
+    int last_appearance;
+
+    void operator+= (const int & rhs) {
+        frequency++;
+        last_appearance = rhs;
+    }
+
+    friend inline bool operator> (const sentence& lhs, const sentence& rhs) {
+        return (lhs.frequency == rhs.frequency)? (lhs.last_appearance>rhs.last_appearance): (lhs.frequency>rhs.frequency);
+    }
+};
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int N, K;
-    unordered_map<string, int> frequency_table;
-    auto cmp = [] (const pair<string, int>& left, const pair<string, int>& right) { return left.second > right.second;};
-    priority_queue<pair<string, int>, std::vector<pair<string, int>>, decltype(cmp)> most_grateful(cmp);
+    unordered_map<string, sentence> frequency_table;
+    auto cmp = [] (const pair<string, sentence>& left, const pair<string, sentence>& right) { return left.second > right.second;};
+    priority_queue<pair<string, sentence>, std::vector<pair<string, sentence>>, decltype(cmp)> most_grateful(cmp);
     vector<string> grateful_things;
-    
+
     cin >> N;
     cin >> K;
 
@@ -22,7 +37,8 @@ int main() {
     for (int i=0; i<3*N; i++) {
         string s;
         getline(cin, s);
-        frequency_table[s]++;
+        frequency_table[s]+=i;
+        cout << frequency_table[s].frequency << " " << frequency_table[s].last_appearance << endl;
     }
 
     for (const auto& element : frequency_table) {
@@ -39,6 +55,7 @@ int main() {
     for (int i=K-1; i>=0; i--) {
         cout << grateful_things[i] << "\n";
     }
+
     return 0;
 }
 
